@@ -2,7 +2,7 @@ from collections import Counter
 
 #Creating list of playable words
 flist = open('scrabble_words.txt').readlines()
-words = [i.rstrip('\n') for i in flist if len(i) == 6]
+words = [word.rstrip('\n') for word in flist if len(word) == 6]
 
 guesses = 0
 while True:
@@ -10,16 +10,12 @@ while True:
 	#Removing words that contain an incorrect letter
 	incorrect_letters = input('Enter any incorrect letters from your guess: ').strip()
 	new_words = []
-	flag = 1
-	for i in words:
-		for x in incorrect_letters:
-			if x not in i:
-				flag = 1
-			else:
-				flag = 0
+	for word in words:
+		for incorrect_letter in incorrect_letters:
+			if incorrect_letter in word:
 				break
-		if flag == 1:
-			new_words.append(i)
+		else:
+			new_words.append(word)
 
 	words = new_words
 
@@ -32,32 +28,32 @@ while True:
 		
 		if position == 1:
 			letter = input('\nEnter letter: ').strip()
-			for i in words:
-				if i[0] == letter:
+			for word in words:
+				if word[0] == letter:
 					correct_words.append(i)
 
 		if position == 2:
 			letter = input('\nEnter letter: ').strip()
-			for i in words:
-				if i[1] == letter:
+			for word in words:
+				if word[1] == letter:
 					correct_words.append(i)
 
 		if position == 3:
 			letter = input('\nEnter letter: ').strip()
-			for i in words:
-				if i[2] == letter:
+			for word in words:
+				if word[2] == letter:
 					correct_words.append(i)
 
 		if position == 4:
 			letter = input('\nEnter letter: ').strip()
-			for i in words:
-				if i[3] == letter:
+			for word in words:
+				if word[3] == letter:
 					correct_words.append(i)
 
 		if position == 5:
 			letter = input('\nEnter letter: ').strip()
-			for i in words:
-				if i[4] == letter:
+			for word in words:
+				if word[4] == letter:
 					correct_words.append(i)
 
 		words = correct_words
@@ -90,42 +86,36 @@ while True:
 			must_haves.append(fifth)
 
 		incorrect_position = []
-		for i in words:
-			if i[0] == first:
-				incorrect_position.append(i)
-			if i[1] == second:
-				incorrect_position.append(i)
-			if i[2] == third:
-				incorrect_position.append(i)
-			if i[3] == fourth:
-				incorrect_position.append(i)
-			if i[4] == fifth:
-				incorrect_position.append(i)
+		for word in words:
+			if word[0] == first:
+				incorrect_position.append(word)
+			if word[1] == second:
+				incorrect_position.append(word)
+			if word[2] == third:
+				incorrect_position.append(word)
+			if word[3] == fourth:
+				incorrect_position.append(word)
+			if word[4] == fifth:
+				incorrect_position.append(word)
 		
 		new_words = []
-		for i in words:
-			for x in incorrect_position:
-				if x not in i:
-					flag = 1
-				else:
-					flag = 0
+		for word in words:
+			for incorrect in incorrect_position:
+				if incorrect in word:
 					break
-			if flag == 1:
-				new_words.append(i)
+			else:
+				new_words.append(word)
 
 		if new_words:
 			words = new_words
 
 		new_words = []
-		for i in words:
-			for x in must_haves:
-				if x in i:
-					flag = 1
-				else:
-					flag = 0
+		for word in words:
+			for must in must_haves:
+				if must not in word:
 					break
-			if flag == 1:
-				new_words.append(i)
+			else:
+				new_words.append(word)
 		
 		words = new_words
 	print('\nPossible words: ' + str(words))
@@ -164,8 +154,10 @@ while True:
 	else:
 		words.remove(comp_guess)
 		if len(words) == 1:
-			print('The correct answer is: ' + str(words[0]).upper())
+			guesses += 1
+			print('\nThen correct answer has to be: ' + str(words[0]).upper())
+			print('\nAnd it only took ' + str(guesses) + ' guesses.')
 			break
 		print("\nLet's try again.",
-		'\nThere is no need to re-enter any information from the previous guesses.')
+		"\nThere's no need to re-enter any information from your previous guesses.")
 		print('\n')
