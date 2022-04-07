@@ -4,7 +4,7 @@ GUIDE
 
 1. Download the text file containing all playable scrabble words.
 
-2. Run the wordle_solver.py. 
+2. Run wordle_solver.py. 
 
 3. Enter your initial guess and the results.
 
