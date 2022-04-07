@@ -21,7 +21,7 @@ while True:
 			guess = input(str('Please enter a valid guess: ')).strip()
 		guesses += 1
 
-	print('\nEnter the result of the guess. '
+	print('\nEnter the results of the guess. '
 	'\nType 1 for a grey letter, 2 for a yellow letter, ' 
 	'or  3 for green letter.')
 
